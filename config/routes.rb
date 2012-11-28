@@ -1,4 +1,6 @@
 RulesMachine::Application.routes.draw do
+  root(:to => 'rules#index')
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
