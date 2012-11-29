@@ -1,0 +1,35 @@
+- content_for :adminTopInfo do
+  = render "/admin/admin_info", :total_api_calls => @total_api_calls,  :total_report_count => @total_report_count, :alert_count => @alert_count
+    
+    
+- content_for :adminToolbar do
+  %a.pull-right.red_button(href=new_rule_path) + New Rule
+.padded-container
+  %h1 Rules
+  .table_container
+    %table.table.table-striped
+      %tr.header
+        %td
+          DESCRIPTION
+        %td
+          DATE CREATED
+        %td
+        %td
+        %td
+      - @rules.each do |rule|
+        %tr
+          %td
+            = link_to rule.description, rule_path(rule)
+          %td
+            = rule.created_at.strftime("%m/%d/%Y")
+          %td
+            - if rule.active
+              = button_to 'Deactivate', deactivate_rule_path(rule), :class => "btn"
+            - else
+              = button_to 'Reactivate', reactivate_rule_path(rule), :class => "btn"
+          / %td
+          /   = link_to image_tag('edit_icon.png', :alt => 'Edit', :title => 'Edit'), edit_rule_path(rule)
+          %td
+            = link_to link_to image_tag('remove-icon.png', :alt => 'Delete', :title => 'Delete'), rule, :method => :delete, :data => {:confirm => 'Are you sure?'}
+  /= will_paginate @rules
+  

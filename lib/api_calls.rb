@@ -1,25 +1,49 @@
 require "base64"
 module ApiCalls
 
-  HEADERS = {  
-     :authorization => "Basic " + Base64.encode64('VDTzTjFftXeyinJ77RLT' + ':X'),  
-     :content_type => :json,  
-     :accept => :json  
-   }  
-#from other sample app api_call.rb  
-  STAGE_PLATFORM_API = "http://ec2-23-23-31-170.compute-1.amazonaws.com/api/v0/platform/"
+  HEADERS = {:content_type => :json,
+             :accept => :json, 
+             :authorization => "Basic " + Base64.encode64('xK37cHcKms4Kjyu3BoEo' + ':X')} #VDTzzjFftXeyinJ77RLT
 
-#or try using from other ms api ruby example for GET/rule
-  # url = "https://platform.machineshop.io/api/v1/rule?active=true&page=2"  
-  # rules_json = RestClient.delete url, headers  
+  STAGE_PLATFORM_API = "http://stage.portal.machineshop.io/api/v0/platform/"
+#may need to change if authentication doesn't work
+
+  # def get_reports
+  #   platform_request("data/monitor")
+  # end
 
   def get_rules
-   platform_request("rule")
+    platform_request("rule")
+  end
+
+  def get_rule(id)
+    platform_request("rule/#{id}")
+  end
+
+  def get_device_instances
+    platform_request("device_instance")
+  end
+
+  def get_device(id)
+    platform_request("device/#{id}")
+  end
+
+  def get_join_rule_conditions
+    platform_request("rule/join_rule_conditions")
+  end 
+
+  def get_comparison_rule_conditions
+    platform_request("rule/comparison_rule_conditions")
+  end 
+
+  def create_rule(rule_json)
+    url = "#{STAGE_PLATFORM_API}/rule"
+    JSON.parse(RestClient.post (url, rule_json, HEADERS), :symbolize_names => true)
   end
 
   def platform_request(endpoint)
     url = "#{STAGE_PLATFORM_API}#{endpoint}"
-    RestClient.get url, HEADERS
+    JSON.parse(RestClient.get (url, HEADERS), :symbolize_names => true)
   end
 
 end
