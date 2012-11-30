@@ -43,6 +43,11 @@ module ApiCalls
     JSON.parse(response, :symbolize_names => true)
   end
 
+  # def create_rule(rule_json)
+  #   url = "#{STAGE_PLATFORM_API}/rule"
+  #   JSON.parse(RestClient.post (url, rule_json, HEADERS), :symbolize_names => true)
+  # end
+
   def platform_request(endpoint)
     url = "#{STAGE_PLATFORM_API}#{endpoint}"
     response = RestClient.get url, HEADERS

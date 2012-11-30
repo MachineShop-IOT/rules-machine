@@ -39,7 +39,7 @@ class RulesController < ApplicationController
     @device_device_instances = @device_device_instances.to_json
     @devices = [] #Device.where(:id.in => device_ids)
     device_ids.each do |id|
-    	device << get_device(id) #DOES THIS RETURN device.payloads??
+    	@devices << get_device(id) #DOES THIS RETURN device.payloads?? ##Changed device to @devices
     end
     	#get all device payloads (called properties) DOES THIS WORK???
     @device_properties = {}
@@ -63,7 +63,7 @@ class RulesController < ApplicationController
   end
 
   def create
-    rule = create_rule(params[:rule_json])
+    rule = create_rule(params[:rule_json]) #(JSON.parse(params[:rule_json])) #changed from,(params[:rule_json])
     if rule
       redirect_to rules_path
     else
