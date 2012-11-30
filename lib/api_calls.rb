@@ -1,4 +1,5 @@
 require "base64"
+require 'json'
 module ApiCalls
 
   HEADERS = {:content_type => :json,
@@ -38,12 +39,14 @@ module ApiCalls
 
   def create_rule(rule_json)
     url = "#{STAGE_PLATFORM_API}/rule"
-    JSON.parse(RestClient.post (url, rule_json, HEADERS), :symbolize_names => true)
+    response = RestClient.post url, rule_json, HEADERS
+    JSON.parse(response, :symbolize_names => true)
   end
 
   def platform_request(endpoint)
     url = "#{STAGE_PLATFORM_API}#{endpoint}"
-    JSON.parse(RestClient.get (url, HEADERS), :symbolize_names => true)
+    response = RestClient.get url, HEADERS
+    JSON.parse(response, :symbolize_names => true)
   end
 
 end

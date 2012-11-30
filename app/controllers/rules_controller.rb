@@ -1,7 +1,8 @@
 require "base64"
 require 'api_calls.rb'
 class RulesController < ApplicationController
-
+  include ApiCalls
+  
   # GET /rules
   # GET /rules.json
   #before_filter :init_admin_info

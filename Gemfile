@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.7'
 gem 'rest-client', '~> 1.6.7'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'haml', '~> 3.1.7'
+gem 'haml-rails', '~> 0.3.4'
+gem 'heroku'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,9 +1,9 @@
-- content_for :adminTopInfo do
-  = render "/admin/admin_info", :total_api_calls => @total_api_calls,  :total_report_count => @total_report_count, :alert_count => @alert_count
+/ - content_for :adminTopInfo do
+/   = render "/admin/admin_info", :total_api_calls => @total_api_calls,  :total_report_count => @total_report_count, :alert_count => @alert_count
     
     
-- content_for :adminToolbar do
-  %a.pull-right.red_button(href=new_rule_path) + New Rule
+/ - content_for :adminToolbar do
+/   %a.pull-right.red_button(href=new_rule_path) + New Rule
 .padded-container
   %h1 Rules
   .table_container
