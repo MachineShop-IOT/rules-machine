@@ -60,7 +60,7 @@
       %button.btn(type='submit') Submit
       = link_to 'Cancel', rule_path(@rule[:id]), :class => "btn"
       - if request.fullpath =~ /edit/
-        = link_to 'Delete Rule', rule_path(@rule.id), :data => { :confirm => 'Are you sure?'}, :method => :put, :class => "btn btn-danger"
+        = link_to 'Delete Rule', rule_path(@rule[:id]), :data => { :confirm => 'Are you sure?'}, :method => :put, :class => "btn btn-danger"
 
       
 

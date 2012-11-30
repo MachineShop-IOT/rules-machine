@@ -16,17 +16,18 @@
         %td
         %td
         %td
+      =@rules
       - @rules.each do |rule|
         %tr
-          %td
-            = link_to rule.description, rule_path(rule)
-          %td
-            = rule.created_at.strftime("%m/%d/%Y")
-          %td
-            - if rule.active
-              = button_to 'Deactivate', deactivate_rule_path(rule), :class => "btn"
-            - else
-              = button_to 'Reactivate', reactivate_rule_path(rule), :class => "btn"
+          / %td
+          /   = link_to rule.description, rule_path(rule)
+          / %td
+          /   = rule.created_at.strftime("%m/%d/%Y")
+          / %td
+          /   - if rule.active
+          /     = button_to 'Deactivate', deactivate_rule_path(rule), :class => "btn"
+          /   - else
+          /     = button_to 'Reactivate', reactivate_rule_path(rule), :class => "btn"
           / %td
           /   = link_to image_tag('edit_icon.png', :alt => 'Edit', :title => 'Edit'), edit_rule_path(rule)
           %td
