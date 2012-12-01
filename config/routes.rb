@@ -5,8 +5,8 @@ RulesMachine::Application.routes.draw do
 
   match '/create' => 'rules#create'
 
-  match '/index' => 'rules#index'
-  
+  match '/rules' => 'rules#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

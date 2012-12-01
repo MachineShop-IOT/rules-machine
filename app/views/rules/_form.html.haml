@@ -1,5 +1,5 @@
 .profile_container
-  = form_tag('/create', :method => 'post') do
+  = form_tag('/rules', :method => 'post', :remote => true) do
     / = render 'shared/form_errors', obj: @rule
     %div#rule_basics
     / Descirption, device/device_instances, condition_type

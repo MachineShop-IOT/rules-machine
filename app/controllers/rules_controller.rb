@@ -63,8 +63,8 @@ class RulesController < ApplicationController
   end
 
   def create
-    @rule = create_rule(params[:rule_json]) #(JSON.parse(params[:rule_json])) #changed from,(params[:rule_json])
-    # if @rule
+    rule = create_rule(params[:rule_json]) #(JSON.parse(params[:rule_json])) #changed from,(params[:rule_json])
+    # if rule
     redirect_to rules_path
     # else
     #   render action: 'new'
