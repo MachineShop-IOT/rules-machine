@@ -1,0 +1,6 @@
+- if obj.errors.any?
+  .alert.alert-error
+    %h4= t('views.errors.fix')
+    %ul.unstyled
+      - obj.errors.full_messages.each do |msg|
+        %li= msg

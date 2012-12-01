@@ -3,7 +3,7 @@ require 'json'
 module ApiCalls
 
   HEADERS = {:content_type => :json,
-             :accept => :json, 
+             :accept => :json,
              :authorization => "Basic " + Base64.encode64('xK37cHcKms4Kjyu3BoEo' + ':X')} #VDTzzjFftXeyinJ77RLT
 
   STAGE_PLATFORM_API = "http://stage.portal.machineshop.io/api/v0/platform/"
@@ -31,22 +31,22 @@ module ApiCalls
 
   def get_join_rule_conditions
     platform_request("rule/join_rule_conditions")
-  end 
+  end
 
   def get_comparison_rule_conditions
     platform_request("rule/comparison_rule_conditions")
-  end 
-
-  def create_rule(rule_json)
-    url = "#{STAGE_PLATFORM_API}/rule"
-    response = RestClient.post url, rule_json, HEADERS
-    JSON.parse(response, :symbolize_names => true)
   end
 
   # def create_rule(rule_json)
   #   url = "#{STAGE_PLATFORM_API}/rule"
-  #   JSON.parse(RestClient.post (url, rule_json, HEADERS), :symbolize_names => true)
+  #   response = RestClient.post url, rule_json, HEADERS
+  #   JSON.parse(response, :symbolize_names => true)
   # end
+
+  def create_rule(rule_json)
+    url = "#{STAGE_PLATFORM_API}/rule"
+    JSON.parse(RestClient.post url, rule_json, HEADERS, :symbolize_names => true)
+  end
 
   def platform_request(endpoint)
     url = "#{STAGE_PLATFORM_API}#{endpoint}"
