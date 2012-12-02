@@ -1,4 +1,6 @@
 RulesMachine::Application.routes.draw do
+  resources :rules
+
   root(:to => 'rules#index')
 
   match '/new' => 'rules#new'

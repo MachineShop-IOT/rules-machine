@@ -1,5 +1,5 @@
 .profile_container
-  = form_tag('/rules', :method => 'post', :remote => true) do
+  = form_tag(rules_path, :method => 'post') do
     / = render 'shared/form_errors', obj: @rule
     %div#rule_basics
     / Descirption, device/device_instances, condition_type
@@ -32,9 +32,7 @@
         = label_tag :device_instance_name
       .form_field
         = select_tag :device_instance_ids, options_for_select(@device_ids)
-        = @device_ids
-        = @test
-  %div
+    %div
     .form_label
       = label_tag "What type of condition should this rule have?"
     %div#rule_condition_selector.form_field
