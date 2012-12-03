@@ -63,6 +63,8 @@ class RulesController < ApplicationController
   end
 
   def create
+    puts "\n\n\nI should create a rule now...\n\n\n"
+
     rule = create_rule(params[:rule_json]) #(JSON.parse(params[:rule_json])) #changed from,(params[:rule_json])
     # if rule
     redirect_to rules_path

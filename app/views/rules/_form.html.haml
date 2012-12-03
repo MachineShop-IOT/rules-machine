@@ -26,12 +26,18 @@
       .form_label
         = label_tag :device_type
       .form_field
-        = select_tag :device_ids, options_for_select(@device_instances)
+        %select#device_instance_ids
+          - @devices.each do |d|
+            %option{:value => d[:_id]} 
+              = d[:name]
     %div#rule_device_instances
       .form_label
         = label_tag :device_instance_name
       .form_field
-        = select_tag :device_instance_ids, options_for_select(@device_ids)
+        %select#device_instance_ids
+          - @device_instances.each do |di|
+            %option{:value => di[:_id]} 
+              = di[:name]
     %div
     .form_label
       = label_tag "What type of condition should this rule have?"
@@ -39,28 +45,28 @@
       = select(:rule_condition, :_type, [['A few conditions that must all be true.', 'and_rule_condition'],['A few conditions where only one must be true.', 'or_rule_condition'], ['A condition that should not be true.', 'not_rule_condition'], ['A value should be equal to a threshold.', 'equal_rule_condition'], ['A value should be greater than a threshold.', 'greater_than_rule_condition'], ['A value should be greater than or equal to a threshold.', 'greater_than_equal_rule_condition'], ['A value should be less than a threshold.', 'less_than_rule_condition'], ['A value should be less than or equal to a threshold.', 'less_than_equal_rule_condition'], ['Device location relative to a fixed point.','near_rule_condition']])
     %br
   
-  %div#condition_attributes
-    
-  %div#sub_conditions
-  / Specify sub conditions for joining conditions at the top level.
-  %div#then_actions
-    / Create all the then_actions for the rule.
-    Do this if the rule condition is met:
-  %div#else_actions
-    / Create all the actions that happen if the condition is not met.
-    Do this if the rule condition is not met:
-  %div#confirmation
-  / Show how the rule would read in plain English (hopefully).
-  %br
-    = @rule
-  .form-actions
-    = link_to '<< Back', 'javascript:void(0)', :onclick => 'RuleWizardBack()', :class => 'btn back-btn'
-    = link_to 'Next >>', 'javascript:void(0)', :onclick => 'RuleWizardNext()', :class => 'btn next-btn'
-    
-    %button.btn(type='submit') Submit
-    / = link_to 'Cancel', rule_path(@rule[:_id]), :class => "btn"
-    / - if request.fullpath =~ /edit/
-    / = link_to 'Delete Rule', rule_path(@rule[:id]), :data => { :confirm => 'Are you sure?'}, :method => :put, :class => "btn btn-danger"
+    %div#condition_attributes
+      
+    %div#sub_conditions
+    / Specify sub conditions for joining conditions at the top level.
+    %div#then_actions
+      / Create all the then_actions for the rule.
+      Do this if the rule condition is met:
+    %div#else_actions
+      / Create all the actions that happen if the condition is not met.
+      Do this if the rule condition is not met:
+    %div#confirmation
+    / Show how the rule would read in plain English (hopefully).
+    %br
+      = @rule
+    .form-actions
+      = link_to '<< Back', 'javascript:void(0)', :onclick => 'RuleWizardBack()', :class => 'btn back-btn'
+      = link_to 'Next >>', 'javascript:void(0)', :onclick => 'RuleWizardNext()', :class => 'btn next-btn'
+      
+      %button.btn(type='submit') Submit
+      / = link_to 'Cancel', rule_path(@rule[:_id]), :class => "btn"
+      / - if request.fullpath =~ /edit/
+      / = link_to 'Delete Rule', rule_path(@rule[:id]), :data => { :confirm => 'Are you sure?'}, :method => :put, :class => "btn btn-danger"
 
    
 
