@@ -3,15 +3,15 @@
     
     
 / - content_for :adminToolbar do
-/   %a.pull-right.red_button(href=new_rule_path) + New Rule
 
-= link_to "New", new_path
 
 .padded-container
-  %h1 Rules
+  %h1.span1 Rules
+  %a.btn-new-rule.span2(href=new_rule_path) + New Rule
   .table_container
+    
     %table.table.table-striped
-      %tr.header
+      %tr
         %td
           DESCRIPTION
         %td
