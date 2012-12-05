@@ -38,6 +38,22 @@
           - @device_instances.each do |di|
             %option{:value => di[:_id]} 
               = di[:name]
+    %br "@device_device_instances"
+    = @device_device_instances
+    %br "@devices"
+    = @devices
+    %br "@devices.count"
+    = @devices.count
+    %br "@devices[0]"
+    = q = @devices[0]
+    %br "Q's PAYLOADS"
+    = q[:payloads]
+    %br "@device_props"
+    = @device_props
+    %br "@payloads"
+    = @payloads
+    %br "@device_properties"
+    = @device_properties
     %div
     .form_label
       = label_tag "What type of condition should this rule have?"

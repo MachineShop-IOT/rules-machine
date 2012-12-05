@@ -29,6 +29,10 @@ module ApiCalls
     platform_request("device/#{id}")
   end
 
+  def get_payload(device_id)
+    platform_request("device/#{device_id}/payload_fields")
+  end
+    
   def get_join_rule_conditions
     platform_request("rule/join_rule_conditions")
   end
