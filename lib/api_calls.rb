@@ -48,11 +48,11 @@ module ApiCalls
   #   JSON.parse(RestClient.post url, rule_json, HEADERS, :symbolize_names => true)
   # end
 
-  def destroy_rule(id)
-    url = "#{STAGE_PLATFORM_API}/delete/rule/#{id}"
-    response = RestClient.delete url, HEADERS
-    # JSON.parse(response, :symbolize_names => true)
-  end
+  # def destroy_rule(id)
+  #   url = "#{STAGE_PLATFORM_API}/delete/rule/#{id}"
+  #   response = RestClient.delete url, HEADERS
+  #   # JSON.parse(response, :symbolize_names => true)
+  # end
 
   def platform_request(endpoint)
     url = "#{STAGE_PLATFORM_API}#{endpoint}"

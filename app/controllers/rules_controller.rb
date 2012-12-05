@@ -44,11 +44,8 @@ class RulesController < ApplicationController
     #get all device payloads (called properties) DOES THIS WORK???
     @device_properties = {}
     @devices.each do |device| #@device?
-      device_props = []
-      device[:payloads].each do |payload|
-        device_props << payload[:key_name]
-      end if device[:payloads]
-      @device_properties[device[:id]] = device_props
+      device[:payloads] = [] if !device[:payloads]
+      @device_properties[device[:_id]] = device[:payloads]
     end
     @device_properties = @device_properties.to_json
 
@@ -91,11 +88,11 @@ end
 
 #   # DELETE /rules/1
 #   # DELETE /rules/1.json
-  def destroy
-    @rule = destroy_rule(params[:_id])
-    @rule.destroy
-    redirect_to rules_path
-  end
+#   def destroy
+#     @rule = Rule.find(params[:id])
+#     @rule.destroy
+#     redirect_to rules_path
+#   end
 
 #   def deactivate
 #     @rule = Rule.find(params[:id])
