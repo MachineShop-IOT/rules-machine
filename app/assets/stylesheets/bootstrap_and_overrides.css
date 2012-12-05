@@ -1,12 +1,40 @@
 /*
   =require twitter-bootstrap-static/bootstrap
 
-  Use Font Awesome icons (default)
-  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
-  */
+Use Font Awesome icons (default)
+To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+=require twitter-bootstrap-static/fontawesome
+*/
 
 /* Custom Styling */
+header {
+  padding-top:25px;
+}
+
+#publogo {
+  display: inline-block;
+  width: 300px;
+  height: 50px;
+}
+
+.welcome {
+  display:inline-block;
+  float:right;
+  font-size:1.6em;
+  margin-right:25px;
+  margin-top:5px;
+}
+
+.red-stripe {
+  background-color:#D01F26;
+  height:6px;
+}
+
+.black-stripe {
+  background-color:#1E1C1D;
+  height:21px;
+}
+
 .btn-new-rule.span2{
   display:inline-block;
   *display:inline;
@@ -44,7 +72,7 @@
   box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
 }
 
-.btn-new-rule:hover, .btn-new-rule:active, .btn-new-rule.active, .btn-new-rule.disabled,.btn-new-rule[disabled]{color:#000000;}
+.btn-new-rule:hover, .btn-new-rule:active, .btn-new-rule.active, .btn-new-rule.disabled,.btn-new-rule[disabled]{color:#FFFFFF;}
 /* END Custom */
 
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}

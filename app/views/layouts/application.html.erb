@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>RulesMachine</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div class="container">
-<%= yield %>
-</div>
-</body>
+  <head>
+    <title>RulesMachine</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <div id='publogo'>
+            <a href="/" class="logo_link"><img alt="Logo" class="logo_size" id="publogoimg" src="/assets/logo.png" /></a>
+          </div>
+          <div class='welcome'>Welcome!</div>
+        </nav>
+        <div class="red-stripe"></div>
+        <div class="black-stripe"></div>
+      </header>
+      <%= yield %>
+    </div>
+  </body>
 </html>

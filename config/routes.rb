@@ -3,11 +3,11 @@ RulesMachine::Application.routes.draw do
 
   root(:to => 'rules#index')
 
-  match '/new' => 'rules#new'
+  # match '/new' => 'rules#new'
 
-  match '/create' => 'rules#create'
+  # match '/create' => 'rules#create'
 
-  match '/rules' => 'rules#index'
+  # match '/rules' => 'rules#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
