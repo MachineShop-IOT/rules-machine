@@ -26,7 +26,7 @@
       .form_label
         = label_tag :device_type
       .form_field
-        %select#device_instance_ids
+        %select#device_ids
           - @devices.each do |d|
             %option{:value => d[:_id]} 
               = d[:name]
