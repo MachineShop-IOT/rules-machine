@@ -39,27 +39,27 @@ class RulesController < ApplicationController
     @device_device_instances = @device_device_instances.to_json #JSON of device_id : device_instance _id
     
     @devices = [] #Device.where(:id.in => device_ids)
-    @device_props = []
+    # @device_props = []
     @device_ids.each do |id|
       @devices << get_device(id) #DOES THIS RETURN device.payloads?? ##Changed device to @devices
       # @device_props << get_payload(id)
     end
     #get all device payloads (called properties) DOES THIS WORK???
-    @device_ids.each do |id|
-      @device_props = []
+    # @device_ids.each do |id|
+      # @device_props = []
       # @device_props << get_payload(id)
-    end
+    # end
     # @payloads = get_payload(params[:_id])
-
     @device_properties = {}
     @devices.each do |device| #@device?
-      @device_props = []
+      
+      @device_properties[device[:_id]] = "foo" #device[:payloads]
        # @device_props << get_payload(device[:_id])
-      device[:payloads].each do |payload|
-        @device_props << payload[:key_name]
+       #device[:payloads].each do |payload|
+        
+        #@device_props << payload[:key_name]
         # @device_props << get_payload(payload[:key_name])
-      end if device[:payloads]
-      @device_properties[device[:id]] = @device_props
+      #end if device[:payloads]
     end
   # end
     @device_properties = @device_properties.to_json

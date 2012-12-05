@@ -41,8 +41,12 @@
     %br "@device_device_instances"
     = @device_device_instances
     %br "@devices"
+    = @devices
+    %br "@devices.count"
+    = @devices.count
+    %br "@devices[0]"
     = q = @devices[0]
-    %br "PAYLOADS"
+    %br "Q's PAYLOADS"
     = q[:payloads]
     %br "@device_props"
     = @device_props

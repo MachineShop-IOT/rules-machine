@@ -30,7 +30,7 @@ module ApiCalls
   end
 
   def get_payload(device_id)
-    platform_request("device/_#{device_id}/payload_fields")
+    platform_request("device/#{device_id}/payload_fields")
   end
     
   def get_join_rule_conditions
