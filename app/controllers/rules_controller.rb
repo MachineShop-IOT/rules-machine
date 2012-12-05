@@ -103,11 +103,11 @@ end
 
 #   # DELETE /rules/1
 #   # DELETE /rules/1.json
-#   def destroy
-#     @rule = Rule.find(params[:id])
-#     @rule.destroy
-#     redirect_to rules_path
-#   end
+  def destroy
+    @rule = destroy_rule(params[:_id])
+    @rule.destroy
+    redirect_to rules_path
+  end
 
 #   def deactivate
 #     @rule = Rule.find(params[:id])
