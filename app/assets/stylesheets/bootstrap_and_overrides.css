@@ -35,6 +35,11 @@ header {
   height:21px;
 }
 
+.table td.delete, .table td.delete-hdr {
+  text-align:center;
+  width:160px;
+}
+
 .btn-new-rule.span2{
   display:inline-block;
   *display:inline;
