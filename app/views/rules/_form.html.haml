@@ -63,7 +63,7 @@
       = link_to '<< Back', 'javascript:void(0)', :onclick => 'RuleWizardBack()', :class => 'btn back-btn'
       = link_to 'Next >>', 'javascript:void(0)', :onclick => 'RuleWizardNext()', :class => 'btn next-btn'
       
-      %button.btn(type='submit') Submit
+      %button.btn.sbt-btn(type='submit') Submit
       / = link_to 'Cancel', rule_path(@rule[:_id]), :class => "btn"
       / - if request.fullpath =~ /edit/
       / = link_to 'Delete Rule', rule_path(@rule[:id]), :data => { :confirm => 'Are you sure?'}, :method => :put, :class => "btn btn-danger"
