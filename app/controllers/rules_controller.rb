@@ -29,33 +29,28 @@ class RulesController < ApplicationController
     @device_ids = []
     @device_device_instances = {}
     @device_instances.each do |di|
-      @device_ids << di[:device_id] #An array of device_id's (as symbols?)
+      @device_ids << di[:device_id]
       if @device_device_instances[di[:device_id]]
         @device_device_instances[di[:device_id]] << di[:_id]
       else
         @device_device_instances[di[:device_id]] = di[:_id]
       end
     end
-    @device_device_instances = @device_device_instances.to_json #JSON of device_id : device_instance _id
+    @device_device_instances = @device_device_instances.to_json
 
     @devices = [] #Device.where(:id.in => device_ids)
-    # @device_props = []
     @device_ids.each do |id|
       @devices << get_device(id) #DOES THIS RETURN device.payloads?? ##Changed device to @devices
-      # @device_props << get_payload(id)
     end
+
     #get all device payloads (called properties) DOES THIS WORK???
-    # @device_ids.each do |id|
-      # @device_props = []
-      # @device_props << get_payload(id)
-    # end
-    # @payloads = get_payload(params[:_id])
     @device_properties = {}
     @devices.each do |device| #@device?
-      device[:payloads] = [] if !device[:payloads]
-      @device_properties[device[:_id]] = device[:payloads]
+      if device[:payloads] == nil
+        device[:payloads] = []
+      end
+      @device_properties[device[:id]] = device[:payloads]
     end
-  # end
     @device_properties = @device_properties.to_json
 
     # Call endpoint to retrieve all possible rule conditions
