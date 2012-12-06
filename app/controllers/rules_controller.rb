@@ -49,9 +49,13 @@ class RulesController < ApplicationController
       if device[:payloads] == nil
         device[:payloads] = []
       end
-      @device_properties[device[:id]] = device[:payloads]
+      device_props = []
+      device[:payloads].each do |payload|
+        device_props << payload[:key_name]
+        end if @device_properties[device[:_id]] = device_props
+        @device_properties[device[:id]] = device_props 
     end
-    @device_properties = @device_properties.to_json
+     @device_properties = @device_properties.to_json 
 
     # Call endpoint to retrieve all possible rule conditions
     @join_rule_conditions = get_join_rule_conditions.to_json
