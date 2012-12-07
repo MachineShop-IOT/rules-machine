@@ -77,6 +77,15 @@ class RulesController < ApplicationController
     #   render action: 'new'
     # end
   end
+
+  #   # DELETE /rules/1
+#   # DELETE /rules/1.json
+  def destroy
+    # @rule = delete_rule(params[:id])
+    @rule = get_rule(params[:id])
+    delete_rule(@rule[:_id])
+     redirect_to rules_path
+  end
 end
 
 #   # PUT /rules/1
