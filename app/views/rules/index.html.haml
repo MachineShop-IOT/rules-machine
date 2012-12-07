@@ -32,6 +32,6 @@
           / %td
           / = link_to image_tag('edit_icon.png', :alt => 'Edit', :title => 'Edit'), edit_rule_path(rule)
           %td.delete
-            = link_to link_to image_tag('remove-icon.png', :alt => 'Delete', :title => 'Delete'), rule, :method => :destroy, :data => {:confirm => 'Are you sure?'}
+            = link_to image_tag('remove-icon.png', :alt => 'Delete', :title => 'Delete'), rule_path(rule[:_id]), :method => :delete, :data => {:confirm => 'Are you sure?'}  
   / = will_paginate @rules
   
