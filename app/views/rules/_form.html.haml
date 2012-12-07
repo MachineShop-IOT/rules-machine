@@ -1,6 +1,5 @@
 .profile_container
   = form_tag(rules_path, :method => 'post') do
-    / = render 'shared/form_errors', obj: @rule
     %div#rule_basics
     / Descirption, device/device_instances, condition_type
     %div
@@ -14,7 +13,7 @@
       .form_label
         = label_tag :description
       .form_field
-        = text_field_tag :description
+        = text_field_tag 'description', nil, required: true
     %div#device_selection
 
       = radio_button_tag('device_selection', 'rule_devices', true) 
