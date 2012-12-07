@@ -32,12 +32,12 @@ class RulesController < ApplicationController
       @device_ids_all << di[:device_id]
       @device_ids = @device_ids_all.uniq
       if @device_device_instances[di[:device_id]] #yields {}
-      #   @device_device_instances[di[:device_id]] << di[:_id] #creates big id mess. alones = empty hash with _id and id
+       @device_device_instances[di[:device_id]] << di[:_id] #creates big id mess. alones = empty hash with _id and id
       else
         @device_device_instances[di[:device_id]] = di[:_id]  #works alone
       end
     end
-    # @device_device_instances = @device_device_instances.to_json
+    @device_device_instances = @device_device_instances.to_json
 
     @devices = [] #Device.where(:id.in => device_ids)
     @device_ids.each do |id|
