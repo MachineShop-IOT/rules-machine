@@ -7,11 +7,6 @@ module ApiCalls
              :authorization => "Basic " + Base64.encode64('xK37cHcKms4Kjyu3BoEo' + ':X')} #VDTzzjFftXeyinJ77RLT
 
   STAGE_PLATFORM_API = "http://stage.portal.machineshop.io/api/v0/platform/"
-#may need to change if authentication doesn't work
-
-  # def get_reports
-  #   platform_request("data/monitor")
-  # end
 
   def get_rules
     platform_request("rule")
@@ -47,15 +42,9 @@ module ApiCalls
     JSON.parse(response, :symbolize_names => true)
   end
 
-  # def create_rule(rule_json)
-  #   url = "#{STAGE_PLATFORM_API}/rule"
-  #   JSON.parse(RestClient.post url, rule_json, HEADERS, :symbolize_names => true)
-  # end
-
   def delete_rule(id)
     url = "#{STAGE_PLATFORM_API}/rule/#{id}"
-    response = RestClient.delete url, HEADERS
-    # JSON.parse(response, :symbolize_names => true)
+    RestClient.delete url, HEADERS
   end
 
   def platform_request(endpoint)

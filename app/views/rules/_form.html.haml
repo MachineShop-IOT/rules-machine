@@ -10,22 +10,6 @@
       = hidden_field_tag :comparison_rule_conditions, @comparison_rule_conditions
       = hidden_field_tag :rule_json
     
-    / %br
-    /   "atdevices"
-    /   = @devices
-    / %br
-    /   "at device_ids"
-    /   =@device_ids
-    / %br
-    /   "at ddi"
-    /   =@device_device_instances
-    / %br
-    /   "at di"
-    /   =@device_instances
-    / %br
-    /   "at di all"
-    /   =@device_ids_all
-
     %div
       .form_label
         = label_tag :description
@@ -80,7 +64,7 @@
       = link_to 'Next >>', 'javascript:void(0)', :onclick => 'RuleWizardNext()', :class => 'btn next-btn'
       
       %button.btn.sbt-btn(type='submit') Submit
-      / = link_to 'Cancel', rule_path(@rule[:_id]), :class => "btn"
+      = link_to 'Cancel', rules_path, :class => "btn"
       / - if request.fullpath =~ /edit/
       / = link_to 'Delete Rule', rule_path(@rule[:id]), :data => { :confirm => 'Are you sure?'}, :method => :put, :class => "btn btn-danger"
 

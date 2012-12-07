@@ -3,53 +3,41 @@ require 'api_calls.rb'
 class RulesController < ApplicationController
   include ApiCalls
 
-  # GET /rules
-  # GET /rules.json
-  # before_filter :init_admin_info
-
   def index
-    #   @rules = Rule.where(user_id: current_user.id)
     @rules = get_rules
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @rules }
     end
   end
 
-  # GET /rules/1
-  # GET /rules/1.json
   def show
     @rule = get_rule(params[:id])
   end
 
-  # For each class variable, substitute each model name with API endpoint
   def new
-    @device_instances = get_device_instances #call GET/device_instance endpoint DeviceInstance.where(user_id: current_user.id)
+    #call GET/device_instance endpoint 
+    @device_instances = get_device_instances 
     @device_ids_all = []
     @device_device_instances = {}
     @device_instances.each do |di|
       @device_ids_all << di[:device_id]
       @device_ids = @device_ids_all.uniq
-      if @device_device_instances[di[:device_id]] #yields {}
-       @device_device_instances[di[:device_id]] << di[:_id] #creates big id mess. alones = empty hash with _id and id
-      else
-        @device_device_instances[di[:device_id]] = di[:_id]  #works alone
-      end
+      @device_device_instances[di[:device_id]] = di[:_id]
     end
     @device_device_instances = @device_device_instances.to_json
 
-    @devices = [] #Device.where(:id.in => device_ids)
+    #call GET/device endpoint 
+    @devices = [] 
     @device_ids.each do |id|
-      @devices << get_device(id) #DOES THIS RETURN device.payloads?? ##Changed device to @devices
+      @devices << get_device(id) 
     end
 
-    #get all device payloads (called properties) DOES THIS WORK???
+    #get all device payloads
     @device_properties = {}
-    @devices.each do |device| #@device?
-      if device[:payloads] == nil
-        device[:payloads] = []
-      end
+    @devices.each do |device|
+      device[:payloads] = [] if !device[:payloads]
       device_props = []
       device[:payloads].each do |payload|
         device_props << payload[:key_name]
@@ -69,77 +57,25 @@ class RulesController < ApplicationController
   end
 
   def create
-    puts "\n\n\nI should create a rule now...\n\n\n"
-
-    rule = create_rule(params[:rule_json]) #(JSON.parse(params[:rule_json])) #changed from,(params[:rule_json])
-    # if rule
+    rule = create_rule(params[:rule_json]) 
+    if rule
     redirect_to rules_path
-    # else
-    #   render action: 'new'
-    # end
+    else
+      render action: 'new'
+    end
   end
 
-  #   # DELETE /rules/1
-#   # DELETE /rules/1.json
   def destroy
-    # @rule = delete_rule(params[:id])
-    @rule = get_rule(params[:id])
-    delete_rule(@rule[:_id])
-     redirect_to rules_path
+    @rule = delete_rule(params[:id])
+    @rule.destroy
+    redirect_to rules_path
   end
-end
 
-#   # PUT /rules/1
-#   # PUT /rules/1.json
-#   def update
-#     # Put code here to turn the params into a hash that gets turned
-#     # into JSON and passed to the POST /rule platform endpoint.
-#     # @rule = Rule.find(params[:id])
-#     # @rule.actions.build({ send_to: params[:send_to] }, params[:action_type])
-
-#     if @rule.update_attributes(params[:rule])
-#       redirect_to rules_path
-#     else
-#       render action: 'edit'
-#     end
-#   end
-
-#   # DELETE /rules/1
-#   # DELETE /rules/1.json
+### Another attempt at delete
 #   def destroy
-#     @rule = Rule.find(params[:id])
-#     @rule.destroy
-#     redirect_to rules_path
+#     # @rule = delete_rule(params[:id])
+#     @rule = get_rule(params[:id])
+#     delete_rule(@rule[:_id])
+#      redirect_to rules_path
 #   end
-
-#   def deactivate
-#     @rule = Rule.find(params[:id])
-#     @rule.deactivate
-#     respond_to do |format|
-#       format.html {redirect_to :back}
-#       format.js
-#     end
-#   end
-
-#   def reactivate
-#     @rule = Rule.find(params[:id])
-#     @rule.activate
-#     respond_to do |format|
-#       format.html {redirect_to :back}
-#       format.js { render json: @rules }
-#     end
-#   end
-
-#   def init_admin_info
-#     @total_api_calls = ApiActivity.where(user_id: current_user.id.to_s).count
-#     @di_arr = []
-#     @alert_count = 0
-#     current_user.device_instances.each do |di|
-#       # For the top panel
-#       @di_arr.push di.id
-#       di.update_alert_summary
-#       @alert_count += di.alert_count
-#     end
-#     @total_report_count = Report.any_in(device_instance_id: @di_arr).count
-#   end
-# end
+end

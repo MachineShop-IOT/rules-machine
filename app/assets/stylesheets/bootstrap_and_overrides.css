@@ -79,6 +79,10 @@ header {
 
 .btn-new-rule:hover, .btn-new-rule:active, .btn-new-rule.active, .btn-new-rule.disabled,.btn-new-rule[disabled]{color:#FFFFFF;}
 
+.span1 {
+  width: 226px;
+}
+
 .sbt-btn {
   display:none;
 }
