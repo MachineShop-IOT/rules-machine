@@ -26,14 +26,15 @@ class RulesController < ApplicationController
   # For each class variable, substitute each model name with API endpoint
   def new
     @device_instances = get_device_instances #call GET/device_instance endpoint DeviceInstance.where(user_id: current_user.id)
-    @device_ids = []
+    @device_ids_all = []
     @device_device_instances = {}
     @device_instances.each do |di|
-      @device_ids << di[:device_id]
-      if @device_device_instances[di[:device_id]]
-        @device_device_instances[di[:device_id]] << di[:_id]
+      @device_ids_all << di[:device_id]
+      @device_ids = @device_ids_all.uniq
+      if @device_device_instances[di[:device_id]] #yields {}
+       @device_device_instances[di[:device_id]] << di[:_id] #creates big id mess. alones = empty hash with _id and id
       else
-        @device_device_instances[di[:device_id]] = di[:_id]
+        @device_device_instances[di[:device_id]] = di[:_id]  #works alone
       end
     end
     @device_device_instances = @device_device_instances.to_json
