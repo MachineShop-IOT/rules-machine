@@ -67,7 +67,7 @@ class RulesController < ApplicationController
 
   def destroy
     @rule = delete_rule(params[:id])
-    @rule.destroy
+    #@rule.destroy
     redirect_to rules_path
   end
 
