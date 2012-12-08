@@ -1,6 +1,5 @@
 .profile_container
   = form_tag(rules_path, :method => 'post') do
-    / = render 'shared/form_errors', obj: @rule
     %div#rule_basics
     / Descirption, device/device_instances, condition_type
     %div
@@ -10,11 +9,12 @@
       = hidden_field_tag :join_rule_conditions, @join_rule_conditions
       = hidden_field_tag :comparison_rule_conditions, @comparison_rule_conditions
       = hidden_field_tag :rule_json
+    
     %div
       .form_label
         = label_tag :description
       .form_field
-        = text_field_tag :description
+        = text_field_tag 'description', nil, required: true
     %div#device_selection
 
       = radio_button_tag('device_selection', 'rule_devices', true) 
@@ -36,20 +36,8 @@
       .form_field
         %select#device_instance_ids
           - @device_instances.each do |di|
-            %option{:value => di[:_id]} 
+            %option{:value => di[:id]} 
               = di[:name]
-    %br "@device_device_instances"
-    = @device_device_instances
-    %br "@devices"
-    = q = @devices[0]
-    %br "PAYLOADS"
-    = q[:payloads]
-    %br "@device_props"
-    = @device_props
-    %br "@payloads"
-    = @payloads
-    %br "@device_properties"
-    = @device_properties
     %div
     .form_label
       = label_tag "What type of condition should this rule have?"
@@ -75,8 +63,8 @@
       = link_to '<< Back', 'javascript:void(0)', :onclick => 'RuleWizardBack()', :class => 'btn back-btn'
       = link_to 'Next >>', 'javascript:void(0)', :onclick => 'RuleWizardNext()', :class => 'btn next-btn'
       
-      %button.btn(type='submit') Submit
-      / = link_to 'Cancel', rule_path(@rule[:_id]), :class => "btn"
+      %button.btn.sbt-btn(type='submit') Submit
+      = link_to 'Cancel', rules_path, :class => "btn"
       / - if request.fullpath =~ /edit/
       / = link_to 'Delete Rule', rule_path(@rule[:id]), :data => { :confirm => 'Are you sure?'}, :method => :put, :class => "btn btn-danger"
 

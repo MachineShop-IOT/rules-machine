@@ -1,8 +1,8 @@
 var COMPARISON_CONDITION_TYPES = [['A value is equal to another value.', 'equal_rule_condition'],
-                            ['A value is not equal to another value.', 'not_equal_rule_condition'], 
-                            ['A value is greater than a threshold.', 'greater_than_rule_condition'], 
-                            ['A value is greater than or equal to a threshold.', 'greater_than_equal_rule_condition'], 
-                            ['A value is less than a threshold.', 'less_than_rule_condition'], 
+                            ['A value is not equal to another value.', 'not_equal_rule_condition'],
+                            ['A value is greater than a threshold.', 'greater_than_rule_condition'],
+                            ['A value is greater than or equal to a threshold.', 'greater_than_equal_rule_condition'],
+                            ['A value is less than a threshold.', 'less_than_rule_condition'],
                             ['A value is less than or equal to a threshold.', 'less_than_equal_rule_condition'],
                             ['A value is one of a collection of values.', 'in_rule_condition'],
                             ['A value is not one of a collection of values.', 'not_in_rule_condition'],
@@ -49,11 +49,11 @@ function ConditionTypes(array){
 
 function CreateGenericSelect(ary_values, select_id, klass){
   html = $("<select></select>").attr("id",select_id).addClass(klass);
-  $.each(ary_values, function(key, value) {   
+  $.each(ary_values, function(key, value) {
      $(html)
        .append($("<option></option>")
        .attr("value",value)
-       .text(value)); 
+       .text(value));
   });
   return html;
 }
@@ -72,11 +72,11 @@ function CreateConditionSelect(condition_array, select_id, klass){
   text = ConditionNames(condition_array);
   vals = ConditionTypes(condition_array);
   html = $("<select></select>").attr("id",select_id).addClass(klass);
-  $.each(text, function(key, value) {   
+  $.each(text, function(key, value) {
      $(html)
        .append($("<option></option>")
        .attr("value",vals[key])
-       .text(value)); 
+       .text(value));
   });
   return html;
 }
@@ -94,11 +94,11 @@ function CreateActionSelect(select_id, klass) {
   text = ActionNames(ACTION_TYPES);
   vals = ActionTypes(ACTION_TYPES);
   html = $("<select></select>").attr("id",select_id).addClass(klass);
-  $.each(text, function(key, value) {   
+  $.each(text, function(key, value) {
      $(html)
        .append($("<option></option>")
        .attr("value",vals[key])
-       .text(value)); 
+       .text(value));
   });
   return html;
 }
@@ -110,19 +110,19 @@ function CreateSimpleComparisonTextBox(id, klass) {
 function CreateRuleConditionDiv(condition_type, device_id){
   condition_counter++;
   id = "condition_" + condition_counter;
-  
+
   html = $("<div></div>").attr("id",id).attr("data-condition_type",condition_type).addClass("condition");
-  
+
   operator = "";
   operator_set = false;
 
   switch (condition_type){
-    case 'equal_rule_condition': 
+    case 'equal_rule_condition':
       if (!operator_set){
         operator = " is equal to ";
         operator_set = true;
       }
-    case 'not_equal_rule_condition': 
+    case 'not_equal_rule_condition':
       if (!operator_set){
         operator = " is not equal to ";
         operator_set = true;
@@ -209,7 +209,7 @@ function CreateSubconditionDiv(condition_type, device_id){
 }
 
 function CreateSubcondition(condition_type_selector_id, device_id){
-  
+
   condition_type = $("#" + condition_type_selector_id).val();
   $('.subcondition_adder').remove();
   $("#condition_attributes").append(CreateSubconditionDiv(condition_type, device_id));
@@ -220,7 +220,7 @@ function CreateSubcondition(condition_type_selector_id, device_id){
 function AddSubconditionLink(device_id){
   selector_id = "condition_add_type_" + condition_counter;
   html = $("<div class='subcondition_adder'></div>").append(CreateComparisonRuleConditionSelect(selector_id));
-  html = $(html).append("<a href='javascript:void(0)' onclick='CreateSubcondition(\"" + selector_id + "\",\""+ device_id +"\")'>Add this kind of condition</a>"); 
+  html = $(html).append("<a href='javascript:void(0)' onclick='CreateSubcondition(\"" + selector_id + "\",\""+ device_id +"\")'>Add this kind of condition</a>");
   return html;
 }
 
@@ -228,7 +228,7 @@ function ActionPanel(then_else){
   action_counter++;
   id = "" + then_else + "_" + action_counter;
   cap = then_else.charAt(0).toUpperCase() + then_else.slice(1);
-  
+
   html = $("<div></div>").attr("id",id).addClass(then_else + "_action");
   html = $(html).append(CreateActionSelect(then_else + "_action_type_" + action_counter, then_else + "_type"));
   html = $(html).append(CreateSimpleComparisonTextBox(then_else + "_action_send_to_" + action_counter, then_else + "_send_to"));
@@ -238,7 +238,7 @@ function ActionPanel(then_else){
 
 function AddActionLink(then_else){
   cap = then_else.charAt(0).toUpperCase() + then_else.slice(1);
-  return "<div class='" + then_else + "_adder'><a href='javascript:void(0)' onclick='Create" + cap + "Action()'>Add an action</a></div>"; 
+  return "<div class='" + then_else + "_adder'><a href='javascript:void(0)' onclick='Create" + cap + "Action()'>Add an action</a></div>";
 }
 
 function RemoveAction(id){
@@ -288,7 +288,7 @@ function Line(line){
   return ConditionTypes(JOIN_CONDITION_TYPES).indexOf(test_value) != -1
  }
 
-function RuleWizardNext() { 
+function RuleWizardNext() {
   switch(panel_index){
     case 0:
       condition_type = $("#rule_condition__type").val();
@@ -301,7 +301,7 @@ function RuleWizardNext() {
     case 3:
       $("#confirmation").html(Rule());
       $("#rule_json").val(Rule());
-      break;   
+      break;
   }
   $("#" + panel_names[panel_index]).hide();
   panel_index++;
@@ -327,10 +327,12 @@ function EnableWizardButtons() {
     case panel_names.length - 1:
       $('.next-btn').hide();
       $('.back-btn').show();
+    $('.sbt-btn').show();
       break;
     default:
-     $('.next-btn').show();
-     $('.back-btn').show();
+    $('.next-btn').show();
+    $('.back-btn').show();
+    // $(':submit').hide();
   }
 }
 
@@ -383,10 +385,10 @@ function CreateNearComparisionCondition(id_num, condition_type){
 
 function CreateConditionJson(id_num, condition_type){
   switch (condition_type){
-    case 'equal_rule_condition':      
-    case 'not_equal_rule_condition':        
-    case 'greater_than_rule_condition':       
-    case 'greater_than_equal_rule_condition':        
+    case 'equal_rule_condition':
+    case 'not_equal_rule_condition':
+    case 'greater_than_rule_condition':
+    case 'greater_than_equal_rule_condition':
     case 'less_than_rule_condition':
     case 'less_than_equal_rule_condition':
       return CreateSimpleComparisonCondition(id_num, condition_type);
@@ -503,5 +505,5 @@ $(document).ready(function(){
 
   CreateThenAction();
   CreateElseAction();
-  
+
 });
