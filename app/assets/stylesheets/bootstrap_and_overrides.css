@@ -40,6 +40,30 @@ header {
   width:160px;
 }
 
+.rules-list {
+  color:#3AAACF;
+  cursor:pointer;
+}
+
+.rules-list:hover > p.notice{
+  display:inline-block;
+}
+
+p.notice {
+  box-shadow:5px 5px 8px #888888;
+  color:#000000;
+  display:none;
+  margin-left:35px;
+  position:absolute;
+  z-index:99;
+  border:1px solid #C9C9C9;
+  padding:14px;
+  margin-top:-14px;
+  background-color:#FFFFFF;
+  width:200px;
+  border-radius:4px;
+}
+
 .btn-new-rule.span2{
   display:inline-block;
   *display:inline;

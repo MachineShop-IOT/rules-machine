@@ -327,13 +327,12 @@ function EnableWizardButtons() {
     case panel_names.length - 1:
       $('.next-btn').hide();
       $('.back-btn').show();
-    $('.sbt-btn').show();
+      $('.sbt-btn').show();
       break;
     default:
-    $('.next-btn').show();
-    $('.back-btn').show();
-    // $(':submit').hide();
-  }
+      $('.next-btn').show();
+      $('.back-btn').show();
+   }
 }
 
 ////////////////////////////////////////
