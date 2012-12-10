@@ -1,49 +1,48 @@
 .profile_container
   = form_tag(rules_path, :method => 'post') do
     %div#rule_basics
-    / Descirption, device/device_instances, condition_type
-    %div
-      / = hidden_field_tag :user_id, current_user[:_id]
-      = hidden_field_tag :device_properties, @device_properties # json used for populating dropdowns
-      = hidden_field_tag :device_device_instances, @device_device_instances
-      = hidden_field_tag :join_rule_conditions, @join_rule_conditions
-      = hidden_field_tag :comparison_rule_conditions, @comparison_rule_conditions
-      = hidden_field_tag :rule_json
+      / Descirption, device/device_instances, condition_type
+      %div
+        = hidden_field_tag :device_properties, @device_properties # json used for populating dropdowns
+        = hidden_field_tag :device_device_instances, @device_device_instances
+        = hidden_field_tag :join_rule_conditions, @join_rule_conditions
+        = hidden_field_tag :comparison_rule_conditions, @comparison_rule_conditions
+        = hidden_field_tag :rule_json
     
-    %div
-      .form_label
-        = label_tag :description
-      .form_field
-        = text_field_tag 'description', nil, required: true
-    %div#device_selection
+      %div
+        .form_label
+          = label_tag :description
+        .form_field
+          = text_field_tag 'description', nil, required: true
+      %div#device_selection
 
-      = radio_button_tag('device_selection', 'rule_devices', true) 
-      Create for all devices of a type. 
+        = radio_button_tag('device_selection', 'rule_devices', true) 
+        Create for all devices of a type. 
+        %br
+        = radio_button_tag('device_selection', 'rule_device_instances', false) 
+        Create for a specific device instance.  
+      %div#rule_devices
+        .form_label
+          = label_tag :device_type
+        .form_field
+          %select#device_ids
+            - @devices.each do |d|
+              %option{:value => d[:_id]} 
+                = d[:name]
+      %div#rule_device_instances
+        .form_label
+          = label_tag :device_instance_name
+        .form_field
+          %select#device_instance_ids
+            - @device_instances.each do |di|
+              %option{:value => di[:id]} 
+                = di[:name]
+      %div
+        .form_label
+          = label_tag "What type of condition should this rule have?"
+      %div#rule_condition_selector.form_field
+        = select(:rule_condition, :_type, [['A few conditions that must all be true.', 'and_rule_condition'],['A few conditions where only one must be true.', 'or_rule_condition'], ['A condition that should not be true.', 'not_rule_condition'], ['A value should be equal to a threshold.', 'equal_rule_condition'], ['A value should be greater than a threshold.', 'greater_than_rule_condition'], ['A value should be greater than or equal to a threshold.', 'greater_than_equal_rule_condition'], ['A value should be less than a threshold.', 'less_than_rule_condition'], ['A value should be less than or equal to a threshold.', 'less_than_equal_rule_condition'], ['Device location relative to a fixed point.','near_rule_condition']])
       %br
-      = radio_button_tag('device_selection', 'rule_device_instances', false) 
-      Create for a specific device instance.  
-    %div#rule_devices
-      .form_label
-        = label_tag :device_type
-      .form_field
-        %select#device_ids
-          - @devices.each do |d|
-            %option{:value => d[:_id]} 
-              = d[:name]
-    %div#rule_device_instances
-      .form_label
-        = label_tag :device_instance_name
-      .form_field
-        %select#device_instance_ids
-          - @device_instances.each do |di|
-            %option{:value => di[:id]} 
-              = di[:name]
-    %div
-    .form_label
-      = label_tag "What type of condition should this rule have?"
-    %div#rule_condition_selector.form_field
-      = select(:rule_condition, :_type, [['A few conditions that must all be true.', 'and_rule_condition'],['A few conditions where only one must be true.', 'or_rule_condition'], ['A condition that should not be true.', 'not_rule_condition'], ['A value should be equal to a threshold.', 'equal_rule_condition'], ['A value should be greater than a threshold.', 'greater_than_rule_condition'], ['A value should be greater than or equal to a threshold.', 'greater_than_equal_rule_condition'], ['A value should be less than a threshold.', 'less_than_rule_condition'], ['A value should be less than or equal to a threshold.', 'less_than_equal_rule_condition'], ['Device location relative to a fixed point.','near_rule_condition']])
-    %br
   
     %div#condition_attributes
       
