@@ -1,11 +1,5 @@
-/ - content_for :adminTopInfo do
-/   = render "/admin/admin_info", :total_api_calls => @total_api_calls,  :total_report_count => @total_report_count, :alert_count => @alert_count
-    
-    
-/ - content_for :adminToolbar do
-
-
 .padded-container
+  
   %h1.span1 Rule Wizard
   %a.btn-new-rule.span2(href=new_rule_path) + New Rule
   .table_container
