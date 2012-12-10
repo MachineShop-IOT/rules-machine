@@ -249,12 +249,14 @@ function CreateThenAction(){
   $('.then_adder').remove();
   $("#then_actions").append(ActionPanel('then'));
   $("#then_actions").append(AddActionLink('then'));
+  $('#then_3').remove();
 }
 
 function CreateElseAction(){
   $('.else_adder').remove();
   $("#else_actions").append(ActionPanel('else'));
   $("#else_actions").append(AddActionLink('else'));
+  $('#else_4').remove();
 }
 
 function GetDeviceInstanceType(device_instance_id){
