@@ -6,7 +6,8 @@ var COMPARISON_CONDITION_TYPES = [['A value is equal to another value.', 'equal_
                             ['A value is less than or equal to a threshold.', 'less_than_equal_rule_condition'],
                             ['A value is one of a collection of values.', 'in_rule_condition'],
                             ['A value is not one of a collection of values.', 'not_in_rule_condition'],
-                            ['A position is within a radius of another position.','near_rule_condition']];
+                            ['A position is within a radius of another position.','near_rule_condition'],
+                            ['A position is outside a radius of another position.','not_near_rule_condition']];
 
 var JOIN_CONDITION_TYPES = [['A few conditions that must all be true.', 'and_rule_condition'],
                             ['A few conditions where only one must be true.', 'or_rule_condition']];
@@ -174,13 +175,22 @@ function CreateRuleConditionDiv(condition_type, device_id){
       break;
 
     case 'near_rule_condition':
+      if (!operator_set){
+        operator = "is within this radius:";
+        operator_set = true;
+      }
+    case 'not_near_rule_condition':
+      if (!operator_set){
+        operator = "is outside this radius:";
+        operator_set = true;
+      }
       //create 2 attribute dropdowns to specify lat/long
       html = $(html).append(Line("Payload property for latitude:"));
       html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_lat_property", "lat_property"));
       html = $(html).append(Line("Payload property for longitude:"));
       html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_long_property", "lat_property"));
       //create a textbox for radius
-      html = $(html).append(Line("is within this radius:"));
+      html = $(html).append(Line(operator));
       html = $(html).append(CreateSimpleComparisonTextBox(id + "_comp_radius", "comp_radius"));
 
       //create 2 textboxes for reference point
