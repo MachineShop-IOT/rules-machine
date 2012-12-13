@@ -1,5 +1,6 @@
 .profile_container
   = form_tag(rules_path, :method => 'post') do
+
     %div#rule_basics
       / Descirption, device/device_instances, condition_type
       %div
@@ -14,6 +15,7 @@
           = label_tag :description
         .form_field
           = text_field_tag 'description', nil, required: true
+      
       %div#device_selection
 
         = radio_button_tag('device_selection', 'rule_devices', true) 
@@ -40,9 +42,9 @@
       %div
         .form_label
           = label_tag "What type of condition should this rule have?"
-      %div#rule_condition_selector.form_field
-        = select(:rule_condition, :_type, [['A few conditions that must all be true.', 'and_rule_condition'],['A few conditions where only one must be true.', 'or_rule_condition'], ['A condition that should not be true.', 'not_rule_condition'], ['A value should be equal to a threshold.', 'equal_rule_condition'], ['A value should be greater than a threshold.', 'greater_than_rule_condition'], ['A value should be greater than or equal to a threshold.', 'greater_than_equal_rule_condition'], ['A value should be less than a threshold.', 'less_than_rule_condition'], ['A value should be less than or equal to a threshold.', 'less_than_equal_rule_condition'], ['Device location relative to a fixed point.','near_rule_condition']])
-      %br
+        %div#rule_condition_selector.form_field
+          = select(:rule_condition, :_type, [['A few conditions that must all be true.', 'and_rule_condition'],['A few conditions where only one must be true.', 'or_rule_condition'], ['A condition that should not be true.', 'not_rule_condition'], ['A value should be equal to a threshold.', 'equal_rule_condition'], ['A value should be greater than a threshold.', 'greater_than_rule_condition'], ['A value should be greater than or equal to a threshold.', 'greater_than_equal_rule_condition'], ['A value should be less than a threshold.', 'less_than_rule_condition'], ['A value should be less than or equal to a threshold.', 'less_than_equal_rule_condition'], ['Device location relative to a fixed point.','near_rule_condition']])
+        %br
   
     %div#condition_attributes
       
@@ -61,8 +63,15 @@
     .form-actions
       = link_to '<< Back', 'javascript:void(0)', :onclick => 'RuleWizardBack()', :class => 'btn back-btn'
       = link_to 'Next >>', 'javascript:void(0)', :onclick => 'RuleWizardNext()', :class => 'btn next-btn'
-      
+      :javascript
+        $('.btn.next-btn').attr({disabled: true, onclick: false});
+        $('#description').change(function() {
+        if($('#description').val() == 0) {
+        $('.btn.next-btn').attr({disabled: true, onclick: false});
+        } else {
+        $('.btn.next-btn').attr({disabled: false, onclick: 'RuleWizardNext()'});
+        }
+        });
+              
       %button.btn.sbt-btn(type='submit') Submit
       = link_to 'Cancel', rules_path, :class => "btn"
-      / - if request.fullpath =~ /edit/
-      / = link_to 'Delete Rule', rule_path(@rule[:id]), :data => { :confirm => 'Are you sure?'}, :method => :put, :class => "btn btn-danger"

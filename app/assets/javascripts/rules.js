@@ -86,9 +86,20 @@ function CreateAllRuleConditionSelect(select_id) {
   combined_array = COMPARISON_CONDITION_TYPES.concat(JOIN_CONDITION_TYPES);
   return CreateConditionSelect(combined_array, select_id, "rule_condition_type");
 }
+// Experiment with Validation
+// function ValidateComparisonRuleConditionsSelect() {
+//   $('.btn.next-btn').attr({disabled: true, onclick: false});
+//   $('.comparison_rule_condition_type').change(function() {
+//     if($('.comparison_rule_condition_type').val() == '0') {
+//       $('.btn.next-btn').attr({disabled: true, onclick: false});
+//     } else {
+//       $('.btn.next-btn').attr({disabled: false, onclick: 'RuleWizardNext()'});
+//     }
+//   });
+// }
 
 function CreateComparisonRuleConditionSelect(select_id) {
-  return CreateConditionSelect(COMPARISON_CONDITION_TYPES, select_id, "comparison_rule_condition_type");
+  return CreateConditionSelect(COMPARISON_CONDITION_TYPES, select_id, "comparison_rule_condition_type").prepend("<option value=''>please select one...</option>");
 }
 
 function CreateActionSelect(select_id, klass) {
@@ -516,5 +527,4 @@ $(document).ready(function(){
 
   CreateThenAction();
   CreateElseAction();
-
 });
