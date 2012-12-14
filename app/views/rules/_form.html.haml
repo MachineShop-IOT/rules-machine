@@ -63,13 +63,6 @@
     .form-actions
       = link_to '<< Back', 'javascript:void(0)', :onclick => 'RuleWizardBack()', :class => 'btn back-btn'
       = link_to 'Next >>', 'javascript:void(0)', :onclick => 'RuleWizardNext()', :class => 'btn next-btn'
-      :javascript
-        $('.btn.next-btn').attr({disabled: true, onclick: false});
-        $('#description').change(function() {
-        if($(this).val() != 0) {
-        $('.btn.next-btn').attr({disabled: false, onclick: 'RuleWizardNext()'});
-        }
-        });
-         
+
       %button.btn.sbt-btn(type='submit') Submit
       = link_to 'Cancel', rules_path, :class => "btn"
