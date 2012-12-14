@@ -63,5 +63,6 @@
     .form-actions
       = link_to '<< Back', 'javascript:void(0)', :onclick => 'RuleWizardBack()', :class => 'btn back-btn'
       = link_to 'Next >>', 'javascript:void(0)', :onclick => 'RuleWizardNext()', :class => 'btn next-btn'
+
       %button.btn.sbt-btn(type='submit') Submit
       = link_to 'Cancel', rules_path, :class => "btn"
