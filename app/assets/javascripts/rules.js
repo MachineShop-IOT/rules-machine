@@ -93,15 +93,7 @@ function CreateAllRuleConditionSelect(select_id) {
 // }
 
 function CreateComparisonRuleConditionSelect(select_id) {
-   $('.btn.next-btn').attr({disabled: true, onclick: false});
   return CreateConditionSelect(COMPARISON_CONDITION_TYPES, select_id, "comparison_rule_condition_type").prepend("<option value=''>please select one...</option>");
-    $('.comparison_rule_condition_type').change(function() {
-    if($('.comparison_rule_condition_type').val() == '0') {
-      $('.btn.next-btn').attr({disabled: true, onclick: false});
-    } else {
-      $('.btn.next-btn').attr({disabled: false, onclick: 'RuleWizardNext()'});
-    }
-  });
 }
 
 function CreateActionSelect(select_id, klass) {
@@ -314,6 +306,16 @@ function Line(line){
  }
 
 function RuleWizardNext() {
+
+  if($('#description').val() == 0) {
+    alert('You must provide a description');
+    return false;
+  }
+    else if ($('.comparison_rule_condition_type').val() == 0) {
+    alert('You must select a subcondition');
+    return false;
+  }
+  else {
   switch(panel_index){
     case 0:
       condition_type = $("#rule_condition__type").val();
@@ -332,6 +334,7 @@ function RuleWizardNext() {
   panel_index++;
   $("#" + panel_names[panel_index]).show();
   EnableWizardButtons();
+}
 }
 
 function RuleWizardBack() {
@@ -506,6 +509,17 @@ function Rule(){
   return rule;
 }
 
+// function ValidateForm(){
+//   if($('#description').val() == 0) {
+//     alert('You must provide a description');
+//     return false;
+//   }
+//     else {
+//       'RuleWizardNext()';
+//   } 
+// }
+
+
 ////////////////////////////////////////
 
 $(document).ready(function(){
@@ -529,4 +543,5 @@ $(document).ready(function(){
 
   CreateThenAction();
   CreateElseAction();
+  // ValidateForm();
 });
