@@ -66,12 +66,10 @@
       :javascript
         $('.btn.next-btn').attr({disabled: true, onclick: false});
         $('#description').change(function() {
-        if($('#description').val() == 0) {
-        $('.btn.next-btn').attr({disabled: true, onclick: false});
-        } else {
+        if($(this).val() != 0) {
         $('.btn.next-btn').attr({disabled: false, onclick: 'RuleWizardNext()'});
         }
         });
-              
+         
       %button.btn.sbt-btn(type='submit') Submit
       = link_to 'Cancel', rules_path, :class => "btn"
