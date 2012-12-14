@@ -308,13 +308,38 @@ function Line(line){
 function RuleWizardNext() {
 
   if($('#description').val() == 0) {
-    alert('You must provide a description');
+    alert('Please provide a description');
     return false;
   }
     else if ($('.comparison_rule_condition_type').val() == 0) {
-    alert('You must select a subcondition');
+    alert('Please select a subcondition');
     return false;
   }
+    else if ($('.value').val() == 0) {
+    alert('Please enter a value');
+    return false;
+  }
+
+    else if ($('.value_array').val() == 0) {
+    alert('Please enter a value');
+    return false;
+  }
+
+    else if ($('.comp_radius').val() == 0) {
+    alert('Please enter a value');
+    return false;
+  }
+
+    else if ($('.lat_property').val() == 0) {
+    alert('Please enter a value');
+    return false;
+  }
+
+    else if ($('.comp_long').val() == 0) {
+    alert('Please enter a value');
+    return false;
+  }
+
   else {
   switch(panel_index){
     case 0:
