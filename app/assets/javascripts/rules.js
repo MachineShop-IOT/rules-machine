@@ -12,7 +12,7 @@ var COMPARISON_CONDITION_TYPES = [['A value is equal to another value.', 'equal_
 var JOIN_CONDITION_TYPES = [['A few conditions that must all be true.', 'and_rule_condition'],
                             ['A few conditions where only one must be true.', 'or_rule_condition']];
 
-var ACTION_TYPES = [['Send and email.','email_rule_action'],
+var ACTION_TYPES = [['Send an email.','email_rule_action'],
                     ['Send a SMS.','sms_rule_action'],
                     ['Send a HTTP request.','http_request_rule_action']];
 
@@ -311,8 +311,8 @@ function RuleWizardNext() {
     alert('Please provide a description');
     return false;
   }
-    else if ($('.comparison_rule_condition_type').val() == 0) {
-    alert('Please select a subcondition');
+    else if ($('#condition_add_type_0').val() == 0) {
+    alert('Please select and add a subcondition');
     return false;
   }
     else if ($('.value').val() == 0) {
@@ -339,6 +339,12 @@ function RuleWizardNext() {
     alert('Please enter a value');
     return false;
   }
+
+
+    //else if ($('#then_action_send_to_1').val() != 0 ){
+    // alert('Please enter a valid email format (name@domain.com)');
+    // return false;
+  // }
 
   else {
   switch(panel_index){
