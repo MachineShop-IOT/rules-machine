@@ -106,7 +106,7 @@ function CreateActionSelect(select_id, klass) {
        .attr("value",vals[key])
        .text(value));
   });
-  return html.prepend("<option value=''>please select one...</option>");
+  return html.prepend("<option value='0'>please select one...</option>");
 }
 
 function CreateSimpleComparisonTextBox(id, klass) {
@@ -336,20 +336,20 @@ function RuleWizardNext() {
   }
 
     else if ($('.comp_long').val() == 0) {
-    alert('Please enter a value');
+      alert('Please enter a value');
     return false;
-  }
-
-    // else if ($('#then_action_send_to_1').val() == 0) {
-    //   alert('Please enter an email using correct format');
-    // return false;
-    // }
-
-    else if ($('#then_action_type_1').val() == 'email_rule_action') {
-      validate();
-      return false;
     }
 
+ 
+    else if ($('#then_action_type_1').val() == 'email_rule_action' && ($('#then_action_send_to_1').val() == 0)) {
+      alert('Please enter an email address using correct format (name@domain.com)');
+    return false;
+    }
+
+    else if ($('#else_action_type_2').val() == 'email_rule_action' && ($('#else_action_send_to_2').val() == 0)) {
+      alert('Please enter an email address using correct format (name@domain.com)');
+    return false;
+    }
 
   else {
   switch(panel_index){
