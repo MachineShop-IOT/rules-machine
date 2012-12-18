@@ -11,6 +11,10 @@ header {
   padding-top:25px;
 }
 
+select {
+  width:auto;
+}
+
 #publogo {
   display: inline-block;
   height: 50px;

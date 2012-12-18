@@ -12,10 +12,9 @@ var COMPARISON_CONDITION_TYPES = [['A value is equal to another value.', 'equal_
 var JOIN_CONDITION_TYPES = [['A few conditions that must all be true.', 'and_rule_condition'],
                             ['A few conditions where only one must be true.', 'or_rule_condition']];
 
-var ACTION_TYPES = [['Send an email.','email_rule_action'],
-                    ['Send a SMS.','sms_rule_action'],
+var ACTION_TYPES = [['Send a SMS.','sms_rule_action'],
+		    ['Send an email.','email_rule_action'],
                     ['Send a HTTP request.','http_request_rule_action']];
-
 var condition_counter = 0;
 var action_counter = 0;
 var panel_names = ['rule_basics','condition_attributes','then_actions','else_actions','confirmation'];
@@ -106,7 +105,7 @@ function CreateActionSelect(select_id, klass) {
        .attr("value",vals[key])
        .text(value));
   });
-  return html.prepend("<option value='0'>please select one...</option>");
+  return html
 }
 
 function CreateSimpleComparisonTextBox(id, klass) {
@@ -340,8 +339,7 @@ function RuleWizardNext() {
     return false;
     }
 
- 
-    else if ($('#then_action_type_1').val() == 'email_rule_action' && ($('#then_action_send_to_1').val() == 0)) {
+ else if ($('#then_action_type_1').val() == 'email_rule_action' && ($('#then_action_send_to_1').val() == 0)) {
       alert('Please enter an email address using correct format (name@domain.com)');
     return false;
     }
