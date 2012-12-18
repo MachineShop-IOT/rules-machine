@@ -106,7 +106,7 @@ function CreateActionSelect(select_id, klass) {
        .attr("value",vals[key])
        .text(value));
   });
-  return html;
+  return html.prepend("<option value=''>please select one...</option>");
 }
 
 function CreateSimpleComparisonTextBox(id, klass) {
@@ -340,12 +340,25 @@ function RuleWizardNext() {
     return false;
   }
 
-
-    //else if ($('#then_action_send_to_1').val() != 0 ){
-    // alert('Please enter a valid email format (name@domain.com)');
+    // else if ($('#then_action_send_to_1').val() == 0) {
+    //   alert('Please enter an email using correct format');
     // return false;
-  // }
+    // }
 
+    else if ($('#then_action_type_1').val() == 'email_rule_action') {
+      validate();
+      return false;
+    }
+
+//     else if ($('#then_action_send_to_1').val() != 0) {
+//       function validate(email) {
+//         var emailRegEx = /^[A-Z0-9._%+]+@[A-Z0-9.]+\.[A-Z]{2,4}$/i;
+//         if (emailRegEx.test('#then_action_send_to_1') == false) {
+//     alert('Please enter a valid email format (name@domain.com)');
+//     return false;
+//   }
+// }
+// }
   else {
   switch(panel_index){
     case 0:
