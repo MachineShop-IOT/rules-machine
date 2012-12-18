@@ -350,15 +350,7 @@ function RuleWizardNext() {
       return false;
     }
 
-//     else if ($('#then_action_send_to_1').val() != 0) {
-//       function validate(email) {
-//         var emailRegEx = /^[A-Z0-9._%+]+@[A-Z0-9.]+\.[A-Z]{2,4}$/i;
-//         if (emailRegEx.test('#then_action_send_to_1') == false) {
-//     alert('Please enter a valid email format (name@domain.com)');
-//     return false;
-//   }
-// }
-// }
+
   else {
   switch(panel_index){
     case 0:

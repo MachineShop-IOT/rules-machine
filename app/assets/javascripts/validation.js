@@ -16,21 +16,3 @@ function validate(){
   	return false;
 	}
 }
-
-
- // if (email_regex.test(email) == false) {
-  //	 alert('Please use correct email format, dammit');
-  	// return false;
-//	}
-// }
-
-
-// function ValidateEmail(mail)   
-// {  
-//  if (/^\S+@\S+\.\S+$/.test(mail))  
-//   {  
-//     return (true)  
-//   }  
-//     alert("You have entered an invalid email address!")  
-//     return (false)  
-// } 
