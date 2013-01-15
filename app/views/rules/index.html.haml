@@ -1,9 +1,9 @@
 .padded-container
-  
+
   %h1.span1 Rule Wizard
   %a.btn-new-rule.span2(href=new_rule_path) + New Rule
   .table_container
-    
+
     %table.table.table-striped
       %tr
         %td
@@ -13,14 +13,13 @@
         %td.delete-hdr
           DELETE
       - @rules.each do |rule|
-        %tr        
+        %tr
           %td.rules-list
-            = rule[:description]         
-            %p.notice 
+            = rule[:description]
+            %p.notice
               = rule[:plain_english]
           %td
             = rule[:created_at].to_time.strftime("%m/%d/%Y")
           %td.delete
-            = link_to image_tag('remove-icon.png', :alt => 'Delete', :title => 'Delete'), rule_path(rule[:_id]), :method => :delete, :data => {:confirm => 'Are you sure?'}  
+            = link_to image_tag('remove-icon.png', :alt => 'Delete', :title => 'Delete'), rule_path(rule[:_id]), :method => :delete, :data => {:confirm => 'Are you sure?'}
             / = will_paginate @rules
-

@@ -4,9 +4,9 @@ module ApiCalls
 
   HEADERS = {:content_type => :json,
              :accept => :json,
-             :authorization => "Basic " + Base64.encode64('xK37cHcKms4Kjyu3BoEo' + ':X')} #VDTzzjFftXeyinJ77RLT
+             :authorization => "Basic " + Base64.encode64('Hq9F4Mrtfygx9ZQt7ASi' + ':X')} #VDTzzjFftXeyinJ77RLT
 
-  STAGE_PLATFORM_API = "http://stage.portal.machineshop.io/api/v0/platform/"
+  PLATFORM_API = "https://portal.machineshop.io/api/v0/platform/"
 
   def get_rules
     platform_request("rule")
@@ -17,7 +17,7 @@ module ApiCalls
   end
 
   def get_device_instances
-    platform_request("device_instance")
+    platform_request("/device_instance")
   end
 
   def get_device(id)
@@ -27,7 +27,7 @@ module ApiCalls
   def get_payload(device_id)
     platform_request("device/#{device_id}/payload_fields")
   end
-    
+
   def get_join_rule_conditions
     platform_request("rule/join_rule_conditions")
   end
@@ -37,19 +37,21 @@ module ApiCalls
   end
 
   def create_rule(rule_json)
-    url = "#{STAGE_PLATFORM_API}/rule"
+    url = "#{PLATFORM_API}/rule"
     response = RestClient.post url, rule_json, HEADERS
     JSON.parse(response, :symbolize_names => true)
   end
 
   def delete_rule(id)
-    url = "#{STAGE_PLATFORM_API}/rule/#{id}"
+    url = "#{PLATFORM_API}/rule/#{id}"
     RestClient.delete url, HEADERS
   end
 
   def platform_request(endpoint)
-    url = "#{STAGE_PLATFORM_API}#{endpoint}"
+    url = "#{PLATFORM_API}#{endpoint}"
+    puts url
     response = RestClient.get url, HEADERS
+    puts response
     JSON.parse(response, :symbolize_names => true)
   end
 end
