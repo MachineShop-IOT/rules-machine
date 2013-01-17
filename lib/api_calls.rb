@@ -6,7 +6,7 @@ module ApiCalls
              :accept => :json,
              :authorization => "Basic " + Base64.encode64('Hq9F4Mrtfygx9ZQt7ASi' + ':X')} #VDTzzjFftXeyinJ77RLT
 
-  PLATFORM_API = "https://portal.machineshop.io/api/v0/platform/"
+  PRODUCTION_PLATFORM_API = "https://portal.machineshop.io/api/v0/platform/"
 
   def get_rules
     platform_request("rule")
@@ -37,21 +37,19 @@ module ApiCalls
   end
 
   def create_rule(rule_json)
-    url = "#{PLATFORM_API}/rule"
+    url = "#{PRODUCTION_PLATFORM_API}/rule"
     response = RestClient.post url, rule_json, HEADERS
     JSON.parse(response, :symbolize_names => true)
   end
 
   def delete_rule(id)
-    url = "#{PLATFORM_API}/rule/#{id}"
+    url = "#{PRODUCTION_PLATFORM_API}/rule/#{id}"
     RestClient.delete url, HEADERS
   end
 
   def platform_request(endpoint)
-    url = "#{PLATFORM_API}#{endpoint}"
-    puts url
+    url = "#{PRODUCTION_PLATFORM_API}#{endpoint}"
     response = RestClient.get url, HEADERS
-    puts response
     JSON.parse(response, :symbolize_names => true)
   end
 end
