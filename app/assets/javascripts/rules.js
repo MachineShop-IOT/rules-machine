@@ -1,13 +1,13 @@
 var COMPARISON_CONDITION_TYPES = [['A value is equal to another value.', 'equal_rule_condition'],
-                            ['A value is not equal to another value.', 'not_equal_rule_condition'],
-                            ['A value is greater than a threshold.', 'greater_than_rule_condition'],
-                            ['A value is greater than or equal to a threshold.', 'greater_than_equal_rule_condition'],
-                            ['A value is less than a threshold.', 'less_than_rule_condition'],
-                            ['A value is less than or equal to a threshold.', 'less_than_equal_rule_condition'],
-                            ['A value is one of a collection of values.', 'in_rule_condition'],
-                            ['A value is not one of a collection of values.', 'not_in_rule_condition'],
-                            ['A position is within a radius of another position.','near_rule_condition'],
-                            ['A position is outside a radius of another position.','not_near_rule_condition']];
+                                  ['A value is not equal to another value.', 'not_equal_rule_condition'],
+                                  ['A value is greater than a threshold.', 'greater_than_rule_condition'],
+                                  ['A value is greater than or equal to a threshold.', 'greater_than_equal_rule_condition'],
+                                  ['A value is less than a threshold.', 'less_than_rule_condition'],
+                                  ['A value is less than or equal to a threshold.', 'less_than_equal_rule_condition'],
+                                  ['A value is one of a collection of values.', 'in_rule_condition'],
+                                  ['A value is not one of a collection of values.', 'not_in_rule_condition'],
+                                  ['A position is within a radius of another position.','near_rule_condition'],
+                                  ['A position is outside a radius of another position.','not_near_rule_condition']];
 
 var JOIN_CONDITION_TYPES = [['A few conditions that must all be true.', 'and_rule_condition'],
                             ['A few conditions where only one must be true.', 'or_rule_condition']];
@@ -50,10 +50,10 @@ function ConditionTypes(array){
 function CreateGenericSelect(ary_values, select_id, klass){
   html = $("<select></select>").attr("id",select_id).addClass(klass);
   $.each(ary_values, function(key, value) {
-     $(html)
-       .append($("<option></option>")
-       .attr("value",value)
-       .text(value));
+    $(html)
+      .append($("<option></option>")
+              .attr("value",value)
+              .text(value));
   });
   return html;
 }
@@ -73,10 +73,10 @@ function CreateConditionSelect(condition_array, select_id, klass){
   vals = ConditionTypes(condition_array);
   html = $("<select></select>").attr("id",select_id).addClass(klass);
   $.each(text, function(key, value) {
-     $(html)
-       .append($("<option></option>")
-       .attr("value",vals[key])
-       .text(value));
+    $(html)
+      .append($("<option></option>")
+              .attr("value",vals[key])
+              .text(value));
   });
   return html;
 }
@@ -85,11 +85,6 @@ function CreateAllRuleConditionSelect(select_id) {
   combined_array = COMPARISON_CONDITION_TYPES.concat(JOIN_CONDITION_TYPES);
   return CreateConditionSelect(combined_array, select_id, "rule_condition_type");
 }
-// Experiment with Validation
-// function ValidateComparisonRuleConditionsSelect() {
-
-
-// }
 
 function CreateComparisonRuleConditionSelect(select_id) {
   return CreateConditionSelect(COMPARISON_CONDITION_TYPES, select_id, "comparison_rule_condition_type").prepend("<option value=''>please select one...</option>");
@@ -100,10 +95,10 @@ function CreateActionSelect(select_id, klass) {
   vals = ActionTypes(ACTION_TYPES);
   html = $("<select></select>").attr("id",select_id).addClass(klass);
   $.each(text, function(key, value) {
-     $(html)
-       .append($("<option></option>")
-       .attr("value",vals[key])
-       .text(value));
+    $(html)
+      .append($("<option></option>")
+              .attr("value",vals[key])
+              .text(value));
   });
   return html
 }
@@ -122,91 +117,91 @@ function CreateRuleConditionDiv(condition_type, device_id){
   operator_set = false;
 
   switch (condition_type){
-    case 'equal_rule_condition':
-      if (!operator_set){
-        operator = " is equal to ";
-        operator_set = true;
-      }
-    case 'not_equal_rule_condition':
-      if (!operator_set){
-        operator = " is not equal to ";
-        operator_set = true;
-      }
-    case 'greater_than_rule_condition':
-      if (!operator_set){
-        operator = " is greater than ";
-        operator_set = true;
-      }
-    case 'greater_than_equal_rule_condition':
-      if (!operator_set){
-        operator = " is greater than or equal to ";
-        operator_set = true;
-      }
-    case 'less_than_rule_condition':
-      if (!operator_set){
-        operator = " is less than ";
-        operator_set = true;
-      }
-    case 'less_than_equal_rule_condition':
-      if (!operator_set){
-        operator = " is less than or equal to ";
-        operator_set = true;
-      }
-      //create an attribute dropdown
+  case 'equal_rule_condition':
+    if (!operator_set){
+      operator = " is equal to ";
+      operator_set = true;
+    }
+  case 'not_equal_rule_condition':
+    if (!operator_set){
+      operator = " is not equal to ";
+      operator_set = true;
+    }
+  case 'greater_than_rule_condition':
+    if (!operator_set){
+      operator = " is greater than ";
+      operator_set = true;
+    }
+  case 'greater_than_equal_rule_condition':
+    if (!operator_set){
+      operator = " is greater than or equal to ";
+      operator_set = true;
+    }
+  case 'less_than_rule_condition':
+    if (!operator_set){
+      operator = " is less than ";
+      operator_set = true;
+    }
+  case 'less_than_equal_rule_condition':
+    if (!operator_set){
+      operator = " is less than or equal to ";
+      operator_set = true;
+    }
+    //create an attribute dropdown
 
-      html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_property", "property"));
-      //add the operator
-      html = $(html).append(Line(operator));
-      //create a textbox for the comparison value
-      html = $(html).append(CreateSimpleComparisonTextBox(id + "_value", "value"));
-      break;
+    html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_property", "property"));
+    //add the operator
+    html = $(html).append(Line(operator));
+    //create a textbox for the comparison value
+    html = $(html).append(CreateSimpleComparisonTextBox(id + "_value", "value"));
+    break;
 
-    case 'in_rule_condition':
-      if (!operator_set){
-        operator = " is one of these values ";
-        operator_set = true;
-      }
-    case 'not_in_rule_condition':
-      if (!operator_set){
-        operator = " is not one of these values ";
-        operator_set = true;
-      }
-      //create an attribute dropdown
-      html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_property", "property"));
-      html = $(html).append(Line(operator));
-      //create a textbox for comma-seperated values to be translated into an array
-      html = $(html).append(CreateSimpleComparisonTextBox(id + "_value_array", "value_array"));
-      break;
+  case 'in_rule_condition':
+    if (!operator_set){
+      operator = " is one of these values ";
+      operator_set = true;
+    }
+  case 'not_in_rule_condition':
+    if (!operator_set){
+      operator = " is not one of these values ";
+      operator_set = true;
+    }
+    //create an attribute dropdown
+    html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_property", "property"));
+    html = $(html).append(Line(operator));
+    //create a textbox for comma-seperated values to be translated into an array
+    html = $(html).append(CreateSimpleComparisonTextBox(id + "_value_array", "value_array"));
+    break;
 
-    case 'near_rule_condition':
-      if (!operator_set){
-        operator = "is within this radius:";
-        operator_set = true;
-      }
-    case 'not_near_rule_condition':
-      if (!operator_set){
-        operator = "is outside this radius:";
-        operator_set = true;
-      }
-      //create 2 attribute dropdowns to specify lat/long
-      html = $(html).append(Line("Payload property for latitude:"));
-      html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_lat_property", "lat_property"));
-      html = $(html).append(Line("Payload property for longitude:"));
-      html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_long_property", "lat_property"));
-      //create a textbox for radius
-      html = $(html).append(Line(operator));
-      html = $(html).append(CreateSimpleComparisonTextBox(id + "_comp_radius", "comp_radius"));
+  case 'near_rule_condition':
+    if (!operator_set){
+      operator = "is within this radius:";
+      operator_set = true;
+    }
+  case 'not_near_rule_condition':
+    if (!operator_set){
+      operator = "is outside this radius:";
+      operator_set = true;
+    }
+    //create 2 attribute dropdowns to specify lat/long
+    html = $(html).append(Line("Payload property for latitude:"));
+    html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_lat_property", "lat_property"));
+    html = $(html).append(Line("Payload property for longitude:"));
+    html = $(html).append(CreateRuleConditionAttributeSelect(device_id, id + "_long_property", "lat_property"));
+    //create a textbox for radius
+    html = $(html).append(Line(operator));
+    html = $(html).append(CreateSimpleComparisonTextBox(id + "_comp_radius", "comp_radius"));
 
-      //create 2 textboxes for reference point
-      html = $(html).append(Line("of this latitude:"));
-      html = $(html).append(CreateSimpleComparisonTextBox(id + "_comp_lat", "comp_lat"));
-      html = $(html).append(Line("and this longitude:"));
-      html = $(html).append(CreateSimpleComparisonTextBox(id + "_comp_long", "comp_long"));
+    //create 2 textboxes for reference point
+    html = $(html).append(Line("of this latitude:"));
+    html = $(html).append(CreateSimpleComparisonTextBox(id + "_comp_lat", "comp_lat"));
+    html = $(html).append(Line("and this longitude:"));
+    html = $(html).append(CreateSimpleComparisonTextBox(id + "_comp_long", "comp_long"));
 
-      //create a select for units
-      html = $(html).append(Line("using these units:"));
-      html = $(html).append("<select id='"+id+"_comp_unit' class = 'comp_unit'><option value = 'ft'>Feet</option><option value = 'mi'>Miles</option><option value = 'm'>Meters</option><option value = 'km'>Kilometers</option></select>")
-      break;
+    //create a select for units
+    html = $(html).append(Line("using these units:"));
+    html = $(html).append("<select id='"+id+"_comp_unit' class = 'comp_unit'><option value = 'ft'>Feet</option><option value = 'mi'>Miles</option><option value = 'm'>Meters</option><option value = 'km'>Kilometers</option></select>")
+    break;
   }
   return html;
 }
@@ -298,11 +293,11 @@ function DeviceId(){
 
 function Line(line){
   return "<br/>" + line + "<br/>";
- }
+}
 
- function IsJoinCondition(test_value){
+function IsJoinCondition(test_value){
   return ConditionTypes(JOIN_CONDITION_TYPES).indexOf(test_value) != -1
- }
+}
 
 function RuleWizardNext() {
 
@@ -310,47 +305,47 @@ function RuleWizardNext() {
     alert('Please provide a description');
     return false;
   }
-    else if ($('#condition_add_type_0').val() == 0) {
+  else if ($('#condition_add_type_0').val() == 0) {
     alert('Please select and add a subcondition');
     return false;
   }
-    else if ($('.value').val() == 0) {
+  else if ($('.value').val() == 0) {
     alert('Please enter a value');
     return false;
   }
 
-    else if ($('.value_array').val() == 0) {
+  else if ($('.value_array').val() == 0) {
     alert('Please enter a value');
     return false;
   }
 
-    else if ($('.comp_radius').val() == 0) {
+  else if ($('.comp_radius').val() == 0) {
     alert('Please enter a value');
     return false;
   }
 
-    else if ($('.lat_property').val() == 0) {
+  else if ($('.lat_property').val() == 0) {
     alert('Please enter a value');
     return false;
   }
 
-    else if ($('.comp_long').val() == 0) {
-      alert('Please enter a value');
+  else if ($('.comp_long').val() == 0) {
+    alert('Please enter a value');
     return false;
-    }
+  }
 
- else if ($('#then_action_type_1').val() == 'email_rule_action' && ($('#then_action_send_to_1').val() == 0)) {
-      alert('Please enter an email address using correct format (name@domain.com)');
+  else if ($('.then_send_to').val() == 0 && (panel_index == 2)) {
+    alert('Please enter a valid phone#, email, or url -OR- Remove this option');
     return false;
-    }
+  }
 
-    else if ($('#else_action_type_2').val() == 'email_rule_action' && ($('#else_action_send_to_2').val() == 0)) {
-      alert('Please enter an email address using correct format (name@domain.com)');
+  else if ($('.else_send_to').val() == 0 && (panel_index == 3)) {
+    alert('Please enter a valid phone#, email, or url -OR- Remove this option');
     return false;
-    }
+  }
 
   else {
-  switch(panel_index){
+    switch(panel_index){
     case 0:
       condition_type = $("#rule_condition__type").val();
       if (IsJoinCondition(condition_type)){
@@ -363,12 +358,12 @@ function RuleWizardNext() {
       $("#confirmation").html(Rule());
       $("#rule_json").val(Rule());
       break;
+    }
+    $("#" + panel_names[panel_index]).hide();
+    panel_index++;
+    $("#" + panel_names[panel_index]).show();
+    EnableWizardButtons();
   }
-  $("#" + panel_names[panel_index]).hide();
-  panel_index++;
-  $("#" + panel_names[panel_index]).show();
-  EnableWizardButtons();
-}
 }
 
 function RuleWizardBack() {
@@ -382,19 +377,19 @@ function RuleWizardBack() {
 
 function EnableWizardButtons() {
   switch (panel_index){
-    case 0:
-      $('.next-btn').show();
-      $('.back-btn').hide();
-      break;
-    case panel_names.length - 1:
-      $('.next-btn').hide();
-      $('.back-btn').show();
-      $('.sbt-btn').show();
-      break;
-    default:
-      $('.next-btn').show();
-      $('.back-btn').show();
-   }
+  case 0:
+    $('.next-btn').show();
+    $('.back-btn').hide();
+    break;
+  case panel_names.length - 1:
+    $('.next-btn').hide();
+    $('.back-btn').show();
+    $('.sbt-btn').show();
+    break;
+  default:
+    $('.next-btn').show();
+    $('.back-btn').show();
+  }
 }
 
 ////////////////////////////////////////
@@ -446,23 +441,23 @@ function CreateNearComparisionCondition(id_num, condition_type){
 
 function CreateConditionJson(id_num, condition_type){
   switch (condition_type){
-    case 'equal_rule_condition':
-    case 'not_equal_rule_condition':
-    case 'greater_than_rule_condition':
-    case 'greater_than_equal_rule_condition':
-    case 'less_than_rule_condition':
-    case 'less_than_equal_rule_condition':
-      return CreateSimpleComparisonCondition(id_num, condition_type);
-      break;
+  case 'equal_rule_condition':
+  case 'not_equal_rule_condition':
+  case 'greater_than_rule_condition':
+  case 'greater_than_equal_rule_condition':
+  case 'less_than_rule_condition':
+  case 'less_than_equal_rule_condition':
+    return CreateSimpleComparisonCondition(id_num, condition_type);
+    break;
 
-    case 'in_rule_condition':
-    case 'not_in_rule_condition':
-      return CreateInComparisonCondition(id_num, condition_type)
-      break;
+  case 'in_rule_condition':
+  case 'not_in_rule_condition':
+    return CreateInComparisonCondition(id_num, condition_type)
+    break;
 
-    case 'near_rule_condition':
-      return CreateNearComparisionCondition(id_num, condition_type)
-      break;
+  case 'near_rule_condition':
+    return CreateNearComparisionCondition(id_num, condition_type)
+    break;
   }
 }
 
@@ -543,17 +538,6 @@ function Rule(){
   return rule;
 }
 
-// function ValidateForm(){
-//   if($('#description').val() == 0) {
-//     alert('You must provide a description');
-//     return false;
-//   }
-//     else {
-//       'RuleWizardNext()';
-//   } 
-// }
-
-
 ////////////////////////////////////////
 
 $(document).ready(function(){
@@ -577,5 +561,4 @@ $(document).ready(function(){
 
   CreateThenAction();
   CreateElseAction();
-  // ValidateForm();
 });

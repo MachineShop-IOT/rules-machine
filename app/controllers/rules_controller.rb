@@ -108,15 +108,6 @@ class RulesController < ApplicationController
 
   def destroy
     @rule = delete_rule(params[:id])
-    #@rule.destroy
     redirect_to rules_path
   end
-
-### Another attempt at delete
-#   def destroy
-#     # @rule = delete_rule(params[:id])
-#     @rule = get_rule(params[:id])
-#     delete_rule(@rule[:_id])
-#      redirect_to rules_path
-#   end
 end
