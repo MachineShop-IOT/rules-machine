@@ -16,46 +16,6 @@ class RulesController < ApplicationController
     @rule = get_rule(params[:id])
   end
 
-  # def new
-  #   @rule = Rule.new
-  #   @rule.rule_condition = RuleCondition.new
-  #   @device_instances = DeviceInstance.where(user_id: current_user.id)
-  #   device_ids = []
-  #   @device_device_instances = {}
-  #   @device_instances.each do |di|
-  #     device_ids << di.device.id
-  #     if @device_device_instances[di.device.id]
-  #       @device_device_instances[di.device.id] << di.id
-  #     else
-  #       @device_device_instances[di.device.id] = [di.id]
-  #     end
-  #   end
-  #   @device_device_instances = @device_device_instances.to_json
-  #   @devices = Device.where(:id.in => device_ids)
-  #   @device_properties = {}
-  #   @devices.each do |device|
-  #     device_props = []
-  #     device.payloads.each do |payload|
-  #       device_props << payload.key_name
-  #     end if device.payloads
-  #     @device_properties[device.id] = device_props
-  #   end
-  #   @device_properties = @device_properties.to_json
-
-  #   @comparison_rule_conditions = []
-  #   @join_rule_conditions = []
-  #   RuleCondition.descendants.each do |condition_type|
-  #     if condition_type.description
-  #       if JoinCondition.descendants.include? condition_type
-  #         @join_rule_conditions << [condition_type.sentence_description, condition_type.name.underscore]
-  #       else
-  #         @comparison_rule_conditions << [condition_type.sentence_description, condition_type.name.underscore]
-  #       end
-  #     end
-  #   end
-  #   @comparison_rule_conditions = @comparison_rule_conditions.to_json
-  #   @join_rule_conditions = @join_rule_conditions.to_json
-
   def new
     #call GET/device_instance endpoint
     @device_instances = get_device_instances
