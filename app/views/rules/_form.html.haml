@@ -37,7 +37,7 @@
         .form_field
           %select#device_instance_ids
             - @device_instances.each do |di|
-              %option{:value => di[:id]}
+              %option{:value => di[:_id]}
                 = di[:name]
       %div
         .form_label
