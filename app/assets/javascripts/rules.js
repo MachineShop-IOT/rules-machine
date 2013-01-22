@@ -301,21 +301,21 @@ function IsJoinCondition(test_value){
 
 function RuleWizardNext() {
 
-  if($('#description').val() == 0) {
+  if($('#description').val() == 0 && (panel_index == 0)) {
     alert('Please provide a description');
     return false;
   }
-  else if ($('#condition_add_type_0').val() == 0) {
+  else if ($('#condition_add_type_0').val() == 0 && (panel_index == 1)) {
     alert('Please select and add a subcondition');
     return false;
   }
-  else if ($('.value').val() == 0) {
-    alert('Please enter a value');
+  else if ($('.value').val() == 0 && (panel_index == 1)) {
+    alert('Please enter a value value');
     return false;
   }
 
-  else if ($('.value_array').val() == 0) {
-    alert('Please enter a value');
+  else if ($('.value_array').val() == 0 && (panel_index == 2)) {
+    alert('Please enter a value value array');
     return false;
   }
 
