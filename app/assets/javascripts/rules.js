@@ -458,6 +458,7 @@ function CreateConditionJson(id_num, condition_type){
     break;
 
   case 'near_rule_condition':
+  case 'not_near_rule_condition':
     return CreateNearComparisionCondition(id_num, condition_type)
     break;
   }
