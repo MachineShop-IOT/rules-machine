@@ -310,7 +310,6 @@ function RuleWizardNext() {
     return false;
   }
 
-
   else if ($('.value').val() == 0 && (panel_index == 1)) {
     alert('Please enter a value');
     return false;

@@ -47,8 +47,8 @@ class RulesController < ApplicationController
       device_props = []
       device[:payloads].each do |payload|
         device_props << payload[:key_name]
-        end if @device_properties[device[:_id]] = device_props
-        @device_properties[device[:id]] = device_props
+      end if @device_properties[device[:_id]] = device_props
+      @device_properties[device[:id]] = device_props
     end
     @device_properties = @device_properties.to_json
 
@@ -65,7 +65,7 @@ class RulesController < ApplicationController
   def create
     rule = create_rule(params[:rule_json])
     if rule
-    redirect_to rules_path
+      redirect_to rules_path
     else
       render action: 'new'
     end
