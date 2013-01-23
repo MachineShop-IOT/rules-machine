@@ -301,36 +301,38 @@ function IsJoinCondition(test_value){
 
 function RuleWizardNext() {
 
-  if($('#description').val() == 0) {
+  if($('#description').val() == 0 && (panel_index == 0)) {
     alert('Please provide a description');
     return false;
   }
-  else if ($('#condition_add_type_0').val() == 0) {
+  else if ($('#condition_add_type_0').val() == 0 && (panel_index == 1)) {
     alert('Please select and add a subcondition');
     return false;
   }
-  else if ($('.value').val() == 0) {
+
+
+  else if ($('.value').val() == 0 && (panel_index == 1)) {
     alert('Please enter a value');
     return false;
   }
 
-  else if ($('.value_array').val() == 0) {
+  else if ($('.value_array').val() == 0 && (panel_index == 1)) {
     alert('Please enter a value');
     return false;
   }
 
-  else if ($('.comp_radius').val() == 0) {
+  else if ($('.comp_radius').val() == 0 && (panel_index == 1)) {
     alert('Please enter a value');
     return false;
   }
 
-  else if ($('.lat_property').val() == 0) {
-    alert('Please enter a value');
+  else if ($('.comp_lat').val() == 0 && (panel_index == 1)) {
+    alert('Please enter a value for all fields');
     return false;
   }
 
-  else if ($('.comp_long').val() == 0) {
-    alert('Please enter a value');
+  else if ($('.comp_long').val() == 0 && (panel_index == 1)) {
+    alert('Please enter a value for all all fields');
     return false;
   }
 

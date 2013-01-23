@@ -1,8 +1,9 @@
 .profile_container
+
   = form_tag(rules_path, :method => 'post') do
 
     %div#rule_basics
-      / Descirption, device/device_instances, condition_type
+      / Description, device/device_instances, condition_type
       %div
         = hidden_field_tag :device_properties, @device_properties # json used for populating dropdowns
         = hidden_field_tag :device_device_instances, @device_device_instances
